@@ -15,6 +15,9 @@ RUN dpkg --add-architecture i386 && \
   apt-get install -y --no-install-recommends openjdk-8-jdk && \
   apt-get install -y --no-install-recommends git wget unzip && \
   wget -O - https://deb.nodesource.com/setup_10.x | bash && \
+  echo fs.inotify.max_user_instances=524288 | tee -a /etc/sysctl.conf && sysctl -p && \
+  echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf && sysctl -p && \
+  echo fs.inotify.max_queued_events=524288 | tee -a /etc/sysctl.conf && sysctl -p && \
   apt-get install -y nodejs && \
   npm install -g react-native-cli
 
